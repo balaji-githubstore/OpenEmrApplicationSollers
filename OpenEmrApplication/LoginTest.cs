@@ -23,6 +23,7 @@ namespace OpenEmrApplication
             SelectElement select = new SelectElement(driver.FindElement(By.Name("languageChoice")));
             select.SelectByText("English (Indian)");
 
+
             driver.FindElement(By.XPath("//button[@type='submit']")).Click();
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(50));
