@@ -32,30 +32,29 @@ namespace OpenEmrApplication
         [Test]
         public void InvalidCredentialTest()
         {
-            driver.FindElement(By.CssSelector("#authUser")).SendKeys("physician123");
-            driver.FindElement(By.Id("clearPass")).SendKeys("physician");
-            SelectElement select = new SelectElement(driver.FindElement(By.Name("languageChoice")));
-            select.SelectByText("English (Indian)");
-            driver.FindElement(By.XPath("//button[@type='submit']")).Click();
-            string actualValue = driver.FindElement(By.XPath("//div[contains(text(),'Invalid')]")).Text.Trim();
-            Assert.AreEqual("Invalid username or password", actualValue);
+            LoginPage login = new LoginPage(driver);
+            login.EnterUsername("admin123");
+            login.EnterPassword("pass");
+            login.SelectLanguageByText("Dutch");
+            login.ClickOnSubmit();
+
+            Assert.AreEqual("Invalid username or password", login.GetErrorMessage());
         }
 
 
         [Test,Description("Valid Credential Test")]
         public void ValidCredentialTest()
         {
+            LoginPage login = new LoginPage(driver);
+            login.EnterUsername("admin");
+            login.EnterPassword("pass");
+            login.SelectLanguageByText("English (Indian)");
+            login.ClickOnSubmit();
 
-            LoginPage.EnterUsername(driver,"admin");
-            driver.FindElement(By.Id("clearPass")).SendKeys("pass");
-            SelectElement select = new SelectElement(driver.FindElement(By.Name("languageChoice")));
-            select.SelectByText("English (Indian)");
-            driver.FindElement(By.XPath("//button[@type='submit']")).Click();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(50));
-            wait.Message = "Calendar text is not there";
-            wait.Until(x => x.FindElement(By.XPath("//span[text()='Calendar']")));
-            string actualValue = driver.Title;
-            Assert.AreEqual("OpenEMR", actualValue);
+            DashboardPage dashboard = new DashboardPage(driver);
+            dashboard.WaitForPresenceOfCalendar();
+
+            Assert.AreEqual("OpenEMR", dashboard.GetTitle());
         }
     }
 }
