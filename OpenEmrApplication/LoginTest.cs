@@ -10,7 +10,7 @@ namespace OpenEmrApplication
 {
     class LoginTest
     {
-        [Test]
+        [Test,Description("Valid Credential Test")]
         public void ValidCredentialTest()
         {
             IWebDriver driver = new ChromeDriver();
@@ -22,7 +22,6 @@ namespace OpenEmrApplication
             driver.FindElement(By.Id("clearPass")).SendKeys("physician");
             SelectElement select = new SelectElement(driver.FindElement(By.Name("languageChoice")));
             select.SelectByText("English (Indian)");
-
 
             driver.FindElement(By.XPath("//button[@type='submit']")).Click();
 
