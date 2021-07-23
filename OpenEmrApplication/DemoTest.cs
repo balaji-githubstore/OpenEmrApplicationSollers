@@ -9,7 +9,7 @@ namespace OpenEmrApplication
     class DemoTest
     {
         [Test]
-        public void ExcelRead()
+        public void ExcelRead1()
         {
             XLWorkbook book = new XLWorkbook(@"D:\B-Mine\Company\Company\Sollers\OpenEmrApplication\OpenEmrApplication\TestData\OpenEMRData.xlsx");
             IXLWorksheet sheet = book.Worksheet("InvalidCredentialTest");
@@ -26,6 +26,35 @@ namespace OpenEmrApplication
             book.Dispose();
         }
 
+
+        [Test]
+        public void ExcelRead2()
+        {
+            XLWorkbook book = new XLWorkbook(@"D:\B-Mine\Company\Company\Sollers\OpenEmrApplication\OpenEmrApplication\TestData\OpenEMRData.xlsx");
+            IXLWorksheet sheet = book.Worksheet("InvalidCredentialTest");
+            IXLRange range = sheet.RangeUsed();
+
+            int rowCount = range.RowCount();
+            Console.WriteLine(rowCount);
+            int colCount = range.ColumnCount();
+            Console.WriteLine(colCount);
+
+            object[] main = new object[rowCount - 1];
+ 
+            for(int r=2;r<=rowCount;r++)
+            {
+                //create temp object
+                for(int c=1;c<=colCount;c++)
+                {
+                    string cellValue = Convert.ToString(range.Cell(r, c).Value);
+                    Console.WriteLine(cellValue);
+                    //load temp object
+                }
+                //add it to main object
+            }
+
+            book.Dispose();
+        }
 
         //john,john123
         //peter,peter123
