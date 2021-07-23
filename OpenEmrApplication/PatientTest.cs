@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using OpenEmrApplication.Base;
 using OpenEmrApplication.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -9,23 +10,8 @@ using System.Text;
 
 namespace OpenEmrApplication
 {
-    class PatientTest
+    class PatientTest : WebDriverWrapper
     {
-        private IWebDriver driver;
-        [SetUp]
-        public void Initialization()
-        {
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-            driver.Url = "http://demo.openemr.io/b/openemr/interface/login/login.php?site=default";
-        }
-        [TearDown]
-        public void EndBrowser()
-        {
-            driver.Quit();
-        }
-
         [Test]
         public void AddPatientTest()
         {
