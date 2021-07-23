@@ -22,7 +22,8 @@ namespace OpenEmrApplication
             login.ClickOnSubmit();
 
             //DashboardPage
-            driver.FindElement(By.XPath("//div[text()='Patient/Client']")).Click();
+            DashboardPage dashboard = new DashboardPage(driver);
+            dashboard.ClickOnPatientClient();
             driver.FindElement(By.XPath("//div[text()='Patients']")).Click();
 
             //PatientFinderPage

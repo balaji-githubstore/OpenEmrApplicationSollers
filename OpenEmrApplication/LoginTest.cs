@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenEmrApplication.Base;
 using OpenEmrApplication.Pages;
+using OpenEmrApplication.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -14,31 +15,45 @@ namespace OpenEmrApplication
     {
 
         [Test]
-        public void InvalidCredentialTest()
+        public void AcknowledgmentsLicensingCertificationLinkTest()
         {
             LoginPage login = new LoginPage(driver);
-            login.EnterUsername("admin123");
-            login.EnterPassword("pass");
-            login.SelectLanguageByText("Dutch");
+            login.ClickOnAcknowledgmentsLicensingCertification();
+
+            login.switchToAcknowledgmentsLicensingCertificationTab();
+            AckLicCertPage ack = new AckLicCertPage(driver);
+            Assert.IsTrue(ack.GetPageSource().Contains("License information"), "Assertion using page contains License information");
+
+        }
+
+        [Test]
+       // [TestCase("john","john123","Dutch","Invalid username or password")]
+       // [TestCase("Peter", "Perter123", "Danish", "Invalid username or password")]
+        public void InvalidCredentialTest(string username,string password,string language,string expectedValue)
+        {
+            LoginPage login = new LoginPage(driver);
+            login.EnterUsername(username);
+            login.EnterPassword(password);
+            login.SelectLanguageByText(language);
             login.ClickOnSubmit();
 
-            Assert.AreEqual("Invalid username or password", login.GetErrorMessage());
+            Assert.AreEqual(expectedValue, login.GetErrorMessage());
         }
 
 
-        [Test,Description("Valid Credential Test")]
-        public void ValidCredentialTest()
+        [Test,Description("Valid Credential Test"),TestCaseSource(typeof(TestCaseSourceUtils), "ValidCredentialData")]
+        public void ValidCredentialTest(string username,string password, string language, string expectedValue)
         {
             LoginPage login = new LoginPage(driver);
-            login.EnterUsername("admin");
-            login.EnterPassword("pass");
-            login.SelectLanguageByText("English (Indian)");
+            login.EnterUsername(username);
+            login.EnterPassword(password);
+            login.SelectLanguageByText(language);
             login.ClickOnSubmit();
 
             DashboardPage dashboard = new DashboardPage(driver);
             dashboard.WaitForPresenceOfCalendar();
 
-            Assert.AreEqual("OpenEMR", dashboard.GetTitle());
+            Assert.AreEqual(expectedValue, dashboard.GetTitle());
         }
     }
 }

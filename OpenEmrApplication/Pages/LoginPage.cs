@@ -55,5 +55,10 @@ namespace OpenEmrApplication.Pages
         {
             return driver.FindElement(errorLocator).Text.Trim();
         }
+
+        public void switchToAcknowledgmentsLicensingCertificationTab()
+        {
+            driver.SwitchTo().Window(driver.WindowHandles[1]);
+        }
     }
 }
