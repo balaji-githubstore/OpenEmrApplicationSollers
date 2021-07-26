@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SeleniumExtras.PageObjects;
 
 namespace OpenEmrApplication.Pages
 {
@@ -22,7 +23,6 @@ namespace OpenEmrApplication.Pages
         {
             this.driver = driver;
         }
-
         public void EnterUsername(string username)
         {
             driver.FindElement(usernameLocator).SendKeys(username);
