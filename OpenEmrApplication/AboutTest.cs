@@ -25,11 +25,9 @@ namespace OpenEmrApplication
 
             AboutOpenEMRPage about = new AboutOpenEMRPage(driver);
             about.SwitchToMSCFrame();
-            string actualHeader = driver.FindElement(By.TagName("h1")).Text;
-            string actualVersion = driver.FindElement(By.TagName("h4")).Text;
 
-            Assert.AreEqual(expectedHeader, actualHeader, "Assertion on header");
-            Assert.AreEqual(expectedVersion, actualVersion, "Assertion on version");
+            Assert.AreEqual(expectedHeader, about.GetHeaderDetail(), "Assertion on header");
+            Assert.AreEqual(expectedVersion, about.GetVersionDetail(), "Assertion on version");
 
         }
     }
