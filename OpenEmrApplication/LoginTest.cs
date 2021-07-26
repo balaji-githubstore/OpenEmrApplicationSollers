@@ -26,7 +26,7 @@ namespace OpenEmrApplication
 
         }
 
-        [Test]
+        [Test,TestCaseSource(typeof(TestCaseSourceUtils), "InvalidCredentialData")]
        // [TestCase("john","john123","Dutch","Invalid username or password")]
        // [TestCase("Peter", "Perter123", "Danish", "Invalid username or password")]
         public void InvalidCredentialTest(string username,string password,string language,string expectedValue)

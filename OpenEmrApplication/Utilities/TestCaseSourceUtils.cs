@@ -11,7 +11,6 @@ namespace OpenEmrApplication.Utilities
         //receptionist,receptionist,English (Indian),OpenEMR
         public static object[] ValidCredentialData()
         {
-
             object[] temp1 = new object[4];
             temp1[0] = "admin";
             temp1[1] = "pass";
@@ -39,8 +38,27 @@ namespace OpenEmrApplication.Utilities
         }
 
 
+        public static object[] InvalidCredentialData()
+        {
+            object[] main = ExcelUtils.GetSheetIntoTwoDimObjectArray
+                (@"D:\B-Mine\Company\Company\Sollers\OpenEmrApplication\OpenEmrApplication\TestData\OpenEMRData.xlsx", "InvalidCredentialTest");
+            return main;
+        }
 
+        public static object[] AddPatientData()
+        {
+            object[] main = ExcelUtils.GetSheetIntoTwoDimObjectArray
+                (@"D:\B-Mine\Company\Company\Sollers\OpenEmrApplication\OpenEmrApplication\TestData\OpenEMRData.xlsx", "AddPatientTest");
+            return main;
+        }
 
+        public static object[] AboutUsHeaderAndVersionData()
+        {
+            object[] main = ExcelUtils.GetSheetIntoTwoDimObjectArray
+                (@"D:\B-Mine\Company\Company\Sollers\OpenEmrApplication\OpenEmrApplication\TestData\OpenEMRData.xlsx",
+                "AboutUsHeaderAndVersionTest");
+            return main;
+        }
     }
 
 

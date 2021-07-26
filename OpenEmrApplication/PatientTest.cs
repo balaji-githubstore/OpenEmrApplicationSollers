@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenEmrApplication.Base;
 using OpenEmrApplication.Pages;
+using OpenEmrApplication.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -12,13 +13,14 @@ namespace OpenEmrApplication
 {
     class PatientTest : WebDriverWrapper
     {
-        [Test]
-        public void AddPatientTest()
+        [Test,TestCaseSource(typeof(TestCaseSourceUtils), "AddPatientData")]
+        public void AddPatientTest(string username, string password, string language, string firstname, string lastname, 
+            string DOB, string gender, string expectedAlert, string expectedPatientName)
         {
             LoginPage login = new LoginPage(driver);
-            login.EnterUsername("admin");
-            login.EnterPassword("pass");
-            login.SelectLanguageByText("English (Indian)");
+            login.EnterUsername(username);
+            login.EnterPassword(password);
+            login.SelectLanguageByText(language);
             login.ClickOnSubmit();
 
             //DashboardPage
@@ -34,11 +36,11 @@ namespace OpenEmrApplication
             //SearchOrAddPatientPage
             driver.SwitchTo().Frame("pat");
 
-            driver.FindElement(By.Id("form_fname")).SendKeys("bala");
-            driver.FindElement(By.Id("form_lname")).SendKeys("dina");
-            driver.FindElement(By.Id("form_DOB")).SendKeys("2021-07-19");
+            driver.FindElement(By.Id("form_fname")).SendKeys(firstname);
+            driver.FindElement(By.Id("form_lname")).SendKeys(lastname);
+            driver.FindElement(By.Id("form_DOB")).SendKeys(DOB);
             SelectElement selectGender = new SelectElement(driver.FindElement(By.Id("form_sex")));
-            selectGender.SelectByText("Female");
+            selectGender.SelectByText(gender);
             driver.FindElement(By.Id("create")).Click();
 
             driver.SwitchTo().DefaultContent();
@@ -73,9 +75,9 @@ namespace OpenEmrApplication
 
 
             //should be present here
-            Assert.IsTrue(actualValueOfAlert.Contains("Assessment: Tobacco"));//given condition must be true otherwise method is failure
+            Assert.IsTrue(actualValueOfAlert.Contains(expectedAlert));//given condition must be true otherwise method is failure
 
-            Assert.AreEqual("Medical Record Dashboard - Bala Dina", actualValueOfAddedPatient);
+            Assert.AreEqual(expectedPatientName, actualValueOfAddedPatient);
 
         }
     }

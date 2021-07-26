@@ -44,13 +44,16 @@ namespace OpenEmrApplication
             for(int r=2;r<=rowCount;r++)
             {
                 //create temp object
+                object[] temp = new object[colCount];
                 for(int c=1;c<=colCount;c++)
                 {
                     string cellValue = Convert.ToString(range.Cell(r, c).Value);
                     Console.WriteLine(cellValue);
                     //load temp object
+                    temp[c-1] = cellValue;
                 }
                 //add it to main object
+                main[r-2] = temp;
             }
 
             book.Dispose();
