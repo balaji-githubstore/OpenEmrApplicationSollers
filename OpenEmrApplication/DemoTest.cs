@@ -3,11 +3,26 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using ClosedXML.Excel;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace OpenEmrApplication
 {
     class DemoTest
     {
+        [Test]
+        public void JSONRead()
+        {
+            StreamReader reader = new StreamReader(@"D:\B-Mine\Company\Company\Sollers\OpenEmrApplication\OpenEmrApplication\TestData\data.json");
+            string text= reader.ReadToEnd();
+            //Console.WriteLine(text);
+
+            dynamic json= JsonConvert.DeserializeObject(text);
+            Console.WriteLine(json["broswser"]);
+            Console.WriteLine(json["url"]);
+        }
+
+
         [Test]
         public void ExcelRead1()
         {
