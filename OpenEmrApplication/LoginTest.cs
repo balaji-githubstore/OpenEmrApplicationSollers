@@ -1,14 +1,9 @@
-﻿using AventStack.ExtentReports;
+﻿using AutomationWrapper.Base;
+using AventStack.ExtentReports;
 using NUnit.Framework;
-using OpenEmrApplication.Base;
 using OpenEmrApplication.Pages;
 using OpenEmrApplication.Utilities;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace OpenEmrApplication
 {

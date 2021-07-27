@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OpenEmrApplication.Utilities
+namespace AutomationWrapper.Utilities
 {
-    class ExcelUtils
+   public class ExcelUtils
     {
         public static object[] GetSheetIntoTwoDimObjectArray(string fileDetail, string sheetname)
         {

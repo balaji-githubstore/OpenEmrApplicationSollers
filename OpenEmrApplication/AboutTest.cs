@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using OpenEmrApplication.Base;
+﻿using AutomationWrapper.Base;
+using NUnit.Framework;
 using OpenEmrApplication.Pages;
 using OpenEmrApplication.Utilities;
 using OpenQA.Selenium;

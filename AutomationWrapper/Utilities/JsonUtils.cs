@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace OpenEmrApplication.Utilities
+namespace AutomationWrapper.Utilities
 {
-    class JsonUtils
+    public class JsonUtils
     {
         public static string GetValue(string fileDetail,string key)
         {

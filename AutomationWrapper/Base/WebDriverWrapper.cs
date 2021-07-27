@@ -1,8 +1,8 @@
-﻿using AventStack.ExtentReports;
+﻿using AutomationWrapper.Utilities;
+using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
-using OpenEmrApplication.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace OpenEmrApplication.Base
+namespace AutomationWrapper.Base
 {
     public class WebDriverWrapper
     {

@@ -1,0 +1,9 @@
+{
+  "browser": "ch",
+  "url": "https://magento.com/",
+  "InvalidCredentialTest": [
+    [ "admin123", "pass123", "Dutch", "Invalid username and password" ],
+    [ "john123", "pass123", "Dutch", "Invalid username and password" ]
+
+  ]
+}
