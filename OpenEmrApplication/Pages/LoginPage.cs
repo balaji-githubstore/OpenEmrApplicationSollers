@@ -22,6 +22,7 @@ namespace OpenEmrApplication.Pages
         public LoginPage(IWebDriver driver)
         {
             this.driver = driver;
+            
         }
         public void EnterUsername(string username)
         {
